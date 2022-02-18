@@ -10,7 +10,7 @@ passport.use(new BearerStrategy(
         const isVerify = await verifyAccessToken(accessToken, config.ENV.JWT_SECRET)
         return done(null, isVerify);
       } catch (error) {
-        return done(null, false);
+        return done(error, false);
       }
     }
   }

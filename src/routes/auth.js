@@ -7,6 +7,13 @@ const log = require('./../modules/logger')
 
 router.post('/register', async function (req, res) {
 
+  if (!req.body.email || !req.body.password || !req.body.name) {
+    res.statusCode = 401
+    return res.json({
+      error: 'incorrect form'
+    });
+  }
+
   const userData = {
      email: req.body.email,
      password: req.body.password,
@@ -37,6 +44,13 @@ router.post('/register', async function (req, res) {
 });
 
 router.post('/login', async function (req, res) {
+
+  if (!req.body.email || !req.body.password) {
+    res.statusCode = 401
+    return res.json({
+      error: 'incorrect form'
+    });
+  }
 
   const userData = {
     email: req.body.email,
